@@ -1,0 +1,49 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+                Web Based Anti-Counterfeit System
+        </title>
+        <link rel="stylesheet" href="static/styles/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/styles/mainstyle.css" type="text/css">
+        <link rel="shortcut icon" href="static/images/bp.png">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    </head>
+    <body>
+
+
+            {% include 'includes/_header.html' %}
+            {% include 'includes/_messages.html' %}
+            
+        <div id="container">
+            
+            <div class="row">
+                
+                <div class="col-md-2">
+                    {% include 'includes/_sidebar.html' %}
+                </div>
+                
+                <div class="col-md-10">
+
+                    <div class="content">
+
+                    {% block body %}{% endblock %}
+
+                    </div>
+                </div>
+            
+            </div>
+        
+        </div>
+
+       
+           <!--{% include 'includes/foot.html' %}--> 
+    </body>
+
+    <script type="text/javascript" src="static/js/jquery-3.2.1.js">
+    </script>
+    <script type="text/javascript" src="static/js/bootstrap.min.js">
+    </script>
+    
+</html>

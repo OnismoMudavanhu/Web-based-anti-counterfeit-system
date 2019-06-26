@@ -1,0 +1,203 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+
+<div class="row">
+    <div class="col-md-12">
+     <h3><i class="fas fa-prescription-bottle-alt"></i> Products List <button type="button" class="btn btn-success" style="float:right" data-toggle="modal" data-target="#mymodal"><i class="fas fa-plus"></i> Add Product</button></h3>  
+     <div class="table-wrapper_prod"> 
+     <!--Table START--> 
+     <table class="table table-striped ">
+                <tr>
+                        <th>Product No</th>
+                        <th>Package No</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Created By</th>
+                        <th>Date Created</th>
+                        <th>Action</th>
+                </tr>      
+                {% for row in products %}
+                <tr>
+                        <td>{{ row["prod_id"] }}</td>
+                        <td>{{ row["package_no"] }}</td>
+                        <td>{{ row["name"] }}</td>
+                        <td>{{ row["descr"] }}</td>
+                        <td>{{ row["price"] }}</td>
+                        <td>{{ row["created_by"] }}</td>
+                        <td>{{ row["date_created"] }}</td>
+                        <td>
+                        <a href="/update/{{row['prod_id']}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row['prod_id']}}">Edit</a>
+                        <a href="/delete/{{row['prod_id']}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                                         
+                        </td>
+                </tr>
+
+
+                <!--modal pop up edit(update) START-->
+<div id='modaledit{{row["prod_id"]}}' class="modal fade" role="dialog">
+   
+        <div class="modal-dialog">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h4 class="modal-title">Please Update Data</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                
+                        </div>
+                        <div class="modal-body">
+                                <form action="{{ url_for('update') }}" method="POST">
+
+                                        <div class="form-group">
+                                                <label>Product No</label>
+                                                <input type="text" class="form-control" name="prod_id" value="{{ row['prod_id'] }}">
+
+                                        </div>
+
+                                        <div class="form-group">
+                                                        <label>Package No:</label>
+                                                        <input type="text" class="form-control" name="package_no" value="{{ row['package_no'] }}">
+        
+                                        </div>
+
+                                        <div class="form-group">
+                                                <label>Name:</label>
+                                                <input type="text" class="form-control" name="name" value="{{ row['name'] }}">
+
+                                        </div>
+
+                                        <div class="form-group">
+                                                <label>Description:</label>
+                                                <input type="text" class="form-control" name="descr" value="{{ row['descr'] }}">
+        
+                                        </div>
+
+                                        <div class="form-group">
+                                                <label>Price:</label>
+                                               <input type="text" class="form-control" name="price" value="{{ row['price'] }}">
+                                        </div>
+                                        <!--
+
+                                          <div class="form-group">
+                                                <label>Created By:</label>
+                                                <input type="text" class="form-control" name="created_by" value="{{ row['created_by'] }}">
+        
+                                        </div>      
+                                        -->
+                                        
+
+                                        
+                                        
+                                        <div class="form-group">
+
+                                                <button class="btn btn-primary" type="submit">Update</button>
+
+                                        </div>
+
+
+                                </form>
+                        </div>
+
+                        <div class="modal-footer">
+                                <button type="btn" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                </div>
+        </div>
+
+</div>
+<!--modal pop up edit(update) END-->
+
+                {% endfor %}
+                
+        </table>
+         <!--Table END--> 
+        </div>
+    </div> 
+    
+<!--modal pop up edit(update) START-->
+
+        <!--modal pop up edit(update) END-->
+
+
+    <!--modal pop up create START-->
+    <div id='mymodal' class="modal fade" role="dialog">
+   
+                <div class="modal-dialog">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h4 class="modal-title">Please Insert Data</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        
+                                </div>
+                                <div class="modal-body">
+                                        <form action="{{ url_for('insert') }}" method="POST">
+                                                <!--
+                                                <div class="form-group">
+                                                        <label>Product No:</label>
+                                                        <input type="text" class="form-control" name="prod_id" required="1">
+        
+                                                </div>
+
+                                                -->
+                                                
+
+                                                <div class="form-group">
+                                                                <label>Package No:</label>
+                                                                <input type="text" class="form-control" name="package_no" required="1">
+                
+                                                </div>
+
+                                                <div class="form-group">
+                                                        <label>Name:</label>
+                                                        <input type="text" class="form-control" name="name" required="1">
+        
+                                                </div>
+
+                                                <div class="form-group">
+                                                        <label>Description:</label>
+                                                        <input type="text" class="form-control" name="descr" required="1">
+                
+                                                </div>
+        
+                                                <div class="form-group">
+                                                        <label>Price:</label>
+                                                       <input type="text" class="form-control" name="price" required="1">
+                                                </div>
+                                                <!--
+                                                   <div class="form-group">
+                                                        <label>Created By:</label>
+                                                        <input type="text" class="form-control" name="created_by" required="1">
+                
+                                                </div>     
+                                                -->
+                                                
+        
+                                                
+                                                
+                                                <div class="form-group">
+        
+                                                        <button class="btn btn-primary" type="submit">Submit Data</button>
+        
+                                                </div>
+        
+        
+                                        </form>
+                                </div>
+        
+                                <div class="modal-footer">
+                                        <button type="btn" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+        
+                        </div>
+                </div>
+        
+        </div>
+        <!--modal pop up create END-->
+
+</div>   
+
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+            <h3><i class="fab fa-creative-commons-pd"></i> Refill List </h3>
+        <div class="table-wrapper">
+            <table class="table table-striped">
+                <tr>
+                        <th>Check No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>DoB</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Product</th>
+                        <th>Type</th>
+                        
+                </tr>
+                {% for row in refill %}
+                <tr>
+                        <td>{{ row['check_no'] }}</te>
+                        <td>{{row['name']}}</td>
+                        <td>{{row['email']}}</td>
+                        <td>{{row['phone_no']}}</td>
+                        <td>{{row['dob']}}</td>
+                        <td>{{row['location']}}</td>
+                        <td>{{row['date_checked']}}</td>
+                        <td>{{row['prod_id']}}</td>
+                        <td>{{row['type']}}</td>
+                </tr>
+
+                {% endfor %}
+            </table>
+        </div>
+
+    </div><!--end col-->
+</div><!--end row-->
+
+{% endblock %}

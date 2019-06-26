@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h3><i class="fas fa-chart-pie"></i> Invalids</h3>
+<div class="top_btns">
+        <a href="/sales" type="button" class="btn btn-success btn-xs">Sales</a>
+        <a href="/location_sales" type="button" class="btn btn-warning btn-xs">Location</a>
+        <a href="/counterfeit_sales" type="button" class="btn btn-danger btn-xs">Refills</a>
+        <a href="/invalid" type="button" class="btn btn-info btn-xs">Invalid</a>
+
+        
+</div>
+
+
+<br>
+<form action="{{url_for('searchInvalid')}}" method="POST">
+        <div class="form-group">
+                
+                <input type="text" class="form-control" name="prod_id" placeholder="filter by product id">
+                <br>
+                <button class="btn btn-success" type="submit">Filter</button>
+                
+                
+
+        </div>
+</form>     
+
+       
+
+
+<div class="row">
+
+        <div class="col-md-12">
+                <table class="table table-stripped">
+                        <tr>
+                                
+                                <th>Product Id</th>
+                                <th>No of Sales</th>
+                                
+                                
+                        </tr>  
+                        {% for row in invalid %}
+                        <tr>
+                                <td>{{ row["prod_id"] }}</td>
+                                <td>{{ row["Total_Invalid"] }}</td>
+                                
+                                
+                              
+                        </tr>
+                        {% endfor %}     
+                </table>
+        </div>
+</div>
+<div class="row">
+        <div class="col-md-8">
+                <p>Bar Chart</p>
+                <object type="image/svg+xml" data="{{image_url}}" style='max-width:700px'>
+                Your browser does not support SVG
+                </object>
+        </div>
+</div>
+
+
+{% endblock %}

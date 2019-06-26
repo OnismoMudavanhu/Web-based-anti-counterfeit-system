@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+ 
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3> <i class="fas fa-file-invoice-dollar"></i> Promotions 
+                <button type="button" class="btn btn-warning btn-xs" style="float:right" data-toggle="modal" data-target="#mymodalPoints"><i class="fas fa-plus"></i> Add Promotion</button></h3>    
+            <div class="table-wrapper_prod"> 
+                <!--Table START--> 
+                <table class="table table-striped ">
+                    <tr>
+                        
+                        <th>Promo No</th>
+                        <th>Descr</th>
+                        <th>Winner Phone</th>
+                        <th>Points</th>
+                        <th>Promo Date</th>     
+                        
+                    </tr>
+                    {% for row in promodata %}
+                    <tr>
+                        <td>{{ row["promo_no"] }}</td>
+                        <td>{{ row["descr"] }}</td>
+                        <td>{{ row["winner_phone"]}}</td>
+                        <td>{{ row["points"]}}</td>
+                        <td>{{ row["promo_date"]}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </table>
+                 <!--modal pop up points START-->
+                 <div id='mymodalPoints' class="modal fade" role="dialog">
+            
+                        <div class="modal-dialog">
+                                <div class="modal-content">
+                                        <div class="modal-header">
+                                                <h4 class="modal-title">Create Promotion</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                
+                                        </div>
+                                        <div class="modal-body">
+                                                <table class="table table-striped ">
+                                                        <tr>
+                                                            <th>Phone No</th>
+                                                            <th>Points</th>
+                                                        </tr>
+                                                        {% for row in points %}
+                                                        <tr>
+                                                            <td>{{ row["phone_no"] }}</td>
+                                                            <td>{{ row["Total_Purchase"] }}</td>
+                                                            
+                                                        </tr>
+                                                        
+                                                </table>
+                                                <form action="{{ url_for('createPromotion') }}" method="POST">
+
+                                                        <div class="form-group">
+                                                                <label>Phone No:</label>
+                                                                <input type="text" class="form-control" name="winner_phone" readonly="readonly" value="{{ row['phone_no'] }}">
+                
+                                                        </div>
+                
+                                                        <div class="form-group">
+                                                                <label>Points:</label>
+                                                                <input type="text" class="form-control" name="points" readonly="readonly" value="{{ row['Total_Purchase'] }}">
+                        
+                                                        </div>
+                
+                                                        <div class="form-group">
+                                                                <label>Description:</label>
+                                                                <textarea class="form-control" name="descr" required="1"></textarea>
+                        
+                                                        </div>
+                
+                                
+                                                        <!--
+                
+                                                          <div class="form-group">
+                                                                <label>Created By:</label>
+                                                                <input type="text" class="form-control" name="created_by" value="{{ row['created_by'] }}">
+                        
+                                                        </div>      
+                                                        -->
+                                                        
+                
+                                                        
+                                                        
+                                                        <div class="form-group">
+                
+                                                                <button class="btn btn-primary" type="submit">Submit</button>
+                
+                                                        </div>
+                
+                
+                                                </form>
+                                        </div>
+                
+                                        <div class="modal-footer">
+                                                <button type="btn" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
+                
+                                </div>
+                        </div>
+                
+                </div>
+                {% endfor %}
+                <!--modal pop up points END-->
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

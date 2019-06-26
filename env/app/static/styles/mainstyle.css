@@ -1,0 +1,82 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,300,700,400,600");
+
+
+
+body{
+	overflow-y:scroll;
+    overflow-x:hidden;
+}
+
+/*my id container*/
+div#container{
+	width: 100%;
+	margin: 0 auto;
+}
+
+/*under ijncludes*/
+div#header{
+	
+	width:100%;
+	height:50px;
+	background-color:#e0e4eb;
+	margin: 0 auto;
+            }
+ /*my side bar and its underincludes*/           
+.sidebar{
+	width: 200px;
+	height:1000px;
+	background-color:#233846;
+	
+}
+/*CONTENT ie what changes within each page*/
+.content{
+	width: auto;
+	height:100%;
+	background-color:#ffffff;
+	
+	padding:10px;
+}
+/*SIDE BAR NAV*/
+ul#nav li{
+	list-style:none;
+	
+}
+
+ul#nav li a{
+	color:#ffffff;
+	display: block;
+	padding:10px;
+	font-size:0.8 em;
+	border-bottom:1px solid #0A0A0A;
+	-webkit-transition:0.2s;
+	-moz-transition:0.2s;
+	-o-transition:0.2s;
+	transition:0.2s;
+	text-decoration:none;
+}
+
+ul#nav li a:hover{
+	background-color: #475DA7;
+	color:#fff;
+	padding-left:50px;
+	}
+
+/*table customer vertical scroll wrapper*/
+.table-wrapper {
+	max-height: 500px;
+	max-width: 100%;
+	overflow: auto;
+	display:inline-block;
+/*	font-size: 12px;*/
+  }
+
+/*table wrapper for products*/
+.table-wrapper_prod {
+	max-height: 500px;
+	overflow: auto;
+	
+  }
+  /*reports: top_btns*/
+  .top_btns{
+	 
+  }
